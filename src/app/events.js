@@ -190,6 +190,8 @@ export default class EventHandler {
     netlifyIdentity.on("logout", () => {
       const outputText = document.querySelector(".login-text");
       outputText.style.display = "none";
+      // eslint-disable-next-line no-undef
+      netlifyIdentity.logout();
     });
   }
 
