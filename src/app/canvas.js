@@ -18,6 +18,8 @@ export default class Canvas {
     document.querySelector("#penx1").checked = true;
     const currSize = localStorage.getItem("currSize");
     const currTool = localStorage.getItem("currTool");
+    console.log(`currSize is ${currSize}`);
+    console.log(`currTool is ${currTool}`);
     this.size.showSize(currSize);
     this.tool.showTool(currTool);
     this.color.showColors();

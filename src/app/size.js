@@ -109,8 +109,8 @@ export default class Size {
       canvas.width = 32;
       canvas.height = 32;
     } else {
-      canvas.width = 128;
-      canvas.height = 128;
+      canvas.width = 64;
+      canvas.height = 64;
     }
   }
 }
