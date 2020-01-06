@@ -193,9 +193,10 @@ export default class EventHandler {
       // eslint-disable-next-line no-undef
       console.log(netlifyIdentity.currentUser);
       // eslint-disable-next-line no-undef
+      console.log(netlifyIdentity.currentUser());
       // profilePic.style.backgroundImage = `url('${netlifyIdentity.currentUser.user_metadata.avatar_url}')`;
       // eslint-disable-next-line no-undef
-      outputText.innerText = ` Welcome, ${netlifyIdentity.currentUser}!`;
+      outputText.innerText = ` Welcome, ${netlifyIdentity.currentUser()}!`;
     });
 
     // eslint-disable-next-line no-undef
