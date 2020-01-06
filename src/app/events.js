@@ -192,12 +192,12 @@ export default class EventHandler {
       console.log(netlifyIdentity);
       // eslint-disable-next-line no-undef
       console.log(netlifyIdentity.currentUser);
-      // eslint-disable-next-line no-undef
       profilePic.style.backgroundImage = `url('${
+        // eslint-disable-next-line no-undef
         netlifyIdentity.currentUser().user_metadata.avatar_url
       }')`;
-      // eslint-disable-next-line no-undef
       outputText.innerText = ` Welcome, ${
+        // eslint-disable-next-line no-undef
         netlifyIdentity.currentUser().user_metadata.full_name
       }!`;
     });
