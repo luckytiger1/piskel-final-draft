@@ -188,6 +188,10 @@ export default class EventHandler {
 
       outputText.style.display = "block";
       // eslint-disable-next-line no-undef
+      console.log(netlifyIdentity.currentUser());
+      // eslint-disable-next-line no-undef
+      console.log(netlifyIdentity.currentUser);
+      // eslint-disable-next-line no-undef
       outputText.innerText = ` Welcome, ${netlifyIdentity.currentUser()}!`;
     });
 
