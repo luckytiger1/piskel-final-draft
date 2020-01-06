@@ -185,14 +185,17 @@ export default class EventHandler {
     netlifyIdentity.on("login", () => {
       // setLogin();
       const outputText = document.querySelector(".login-text");
+      const profilePic = document.querySelector(".profile-pic");
 
       outputText.style.display = "block";
       // eslint-disable-next-line no-undef
-      console.log(netlifyIdentity.currentUser());
+      console.log(netlifyIdentity);
       // eslint-disable-next-line no-undef
       console.log(netlifyIdentity.currentUser);
       // eslint-disable-next-line no-undef
-      outputText.innerText = ` Welcome, ${netlifyIdentity.currentUser()}!`;
+      profilePic.style.backgroundImage = `url('${netlifyIdentity.currentUser.user_metadata.avatar_url}')`;
+      // eslint-disable-next-line no-undef
+      outputText.innerText = ` Welcome, ${netlifyIdentity.currentUser.user_metadata.full_name}!`;
     });
 
     // eslint-disable-next-line no-undef
