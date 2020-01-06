@@ -183,7 +183,12 @@ export default class EventHandler {
   loginHandler() {
     // eslint-disable-next-line no-undef
     netlifyIdentity.on("login", () => {
-      setLogin();
+      // setLogin();
+      const outputText = document.querySelector(".login-text");
+
+      outputText.style.display = "block";
+      // eslint-disable-next-line no-undef
+      outputText.innerText = ` Welcome, ${netlifyIdentity.currentUser()}!`;
     });
 
     // eslint-disable-next-line no-undef
@@ -191,7 +196,7 @@ export default class EventHandler {
       const outputText = document.querySelector(".login-text");
       outputText.style.display = "none";
       // eslint-disable-next-line no-undef
-      netlifyIdentity.logout();
+      // netlifyIdentity.logout();
     });
   }
 

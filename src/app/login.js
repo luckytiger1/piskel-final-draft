@@ -9,12 +9,12 @@ async function setLogin() {
   const { login } = data;
   console.log(data);
   outputText.style.display = "block";
-  if (data) {
-    outputText.innerText = ` Welcome, ${login}!`;
-  } else {
-    // eslint-disable-next-line no-undef
-    outputText.innerText = ` Welcome, ${netlifyIdentity.currentUser()}!`;
-  }
+  // if (data) {
+  outputText.innerText = ` Welcome, ${login}!`;
+  // } else {
+  //   // eslint-disable-next-line no-undef
+  //   outputText.innerText = ` Welcome, ${netlifyIdentity.currentUser()}!`;
+  // }
 }
 
 export default { setLogin };
