@@ -193,7 +193,7 @@ export default class EventHandler {
       // eslint-disable-next-line no-undef
       console.log(netlifyIdentity.currentUser);
       // eslint-disable-next-line no-undef
-      profilePic.style.backgroundImage = `url('${netlifyIdentity.currentUser.user_metadata.avatar_url}')`;
+      // profilePic.style.backgroundImage = `url('${netlifyIdentity.currentUser.user_metadata.avatar_url}')`;
       // eslint-disable-next-line no-undef
       outputText.innerText = ` Welcome, ${netlifyIdentity.currentUser.user_metadata.full_name}!`;
     });
@@ -201,7 +201,10 @@ export default class EventHandler {
     // eslint-disable-next-line no-undef
     netlifyIdentity.on("logout", () => {
       const outputText = document.querySelector(".login-text");
+      const profilePic = document.querySelector(".profile-pic");
+
       outputText.style.display = "none";
+      profilePic.style.display = "none";
       // eslint-disable-next-line no-undef
       // netlifyIdentity.logout();
     });
