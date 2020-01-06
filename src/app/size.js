@@ -88,29 +88,27 @@ export default class Size {
   }
 
   setSize() {
-    canvas.width = localStorage.getItem("canvasW");
-    canvas.height = localStorage.getItem("canvasH");
-    // if (
-    //   localStorage.getItem("canvasW") === "128" &&
-    //   localStorage.getItem("canvasH") === "128"
-    // ) {
-    //   canvas.width = 128;
-    //   canvas.height = 128;
-    // } else if (
-    //   localStorage.getItem("canvasW") === "64" &&
-    //   localStorage.getItem("canvasH") === "64"
-    // ) {
-    //   canvas.width = 64;
-    //   canvas.height = 64;
-    // } else if (
-    //   localStorage.getItem("canvasW") === "32" &&
-    //   localStorage.getItem("canvasH") === "32"
-    // ) {
-    //   canvas.width = 32;
-    //   canvas.height = 32;
-    // } else {
-    //   canvas.width = 128;
-    //   canvas.height = 128;
-    // }
+    if (
+      localStorage.getItem("canvasW") === "128" &&
+      localStorage.getItem("canvasH") === "128"
+    ) {
+      canvas.width = 128;
+      canvas.height = 128;
+    } else if (
+      localStorage.getItem("canvasW") === "64" &&
+      localStorage.getItem("canvasH") === "64"
+    ) {
+      canvas.width = 64;
+      canvas.height = 64;
+    } else if (
+      localStorage.getItem("canvasW") === "32" &&
+      localStorage.getItem("canvasH") === "32"
+    ) {
+      canvas.width = 32;
+      canvas.height = 32;
+    } else {
+      canvas.width = 128;
+      canvas.height = 128;
+    }
   }
 }
