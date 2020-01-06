@@ -22,6 +22,8 @@ export default class Color {
     ).style.background = localStorage.getItem("prevColorOld");
   }
 
+  setColor() {}
+
   saveColors() {
     const prevColorOldValue = document.querySelector(".prev-color-btn").style
       .background;
@@ -33,9 +35,7 @@ export default class Color {
 
   changeColor(name) {
     context.fillStyle = name === ".red-btn" ? "#ff0000" : "#0000ff";
-    document.querySelector(
-      ".prev-color-btn"
-    ).style.background = document.querySelector(".curr-color").style.background;
+
     document.querySelector(".curr-color").style.background =
       name === ".red-btn" ? "#ff0000" : "#0000ff";
   }

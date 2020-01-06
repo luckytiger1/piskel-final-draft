@@ -10,6 +10,7 @@ import {
   idCount,
   previewFrames
 } from "./variables";
+import setLogin from "./login";
 import { startAnimating } from "./preview";
 import Canvas from "./canvas";
 import Size from "./size";
@@ -161,6 +162,37 @@ export default class EventHandler {
     });
   }
 
+  fullscreenHandler() {
+    document
+      .querySelector(".background-image-frame-container")
+      .addEventListener("click", e => {
+        if ("fullscreenEnabled" in document) {
+          if (document.fullscreenEnabled) {
+            console.log("User allows fullscreen");
+
+            if ("requestFullscreen" in e.target) {
+              e.target.requestFullscreen();
+            }
+          }
+        } else {
+          console.log("User doesn't allow full screen");
+        }
+      });
+  }
+
+  loginHandler() {
+    // eslint-disable-next-line no-undef
+    netlifyIdentity.on("login", () => {
+      setLogin();
+    });
+
+    // eslint-disable-next-line no-undef
+    netlifyIdentity.on("logout", () => {
+      const outputText = document.querySelector(".login-text");
+      outputText.style.display = "none";
+    });
+  }
+
   colorHandler() {
     document.querySelector(".currentColor").addEventListener("click", () => {
       this.changeState(".current-btn");
@@ -218,32 +250,6 @@ export default class EventHandler {
       this.frame.createFrame(idCount.count);
       idCount.count += 1;
     });
-
-    // document.querySelector
-
-    // document.querySelector(".preview-list").addEventListener("mousedown", e => {
-    //   let dragged;
-    //   if (e.target.classList.contains("preview-tile")) {
-    //     console.log(`tile mousedown`);
-    //   }
-    //   if (e.target.classList.contains("dnd-frame")) {
-    //     e.target.parentNode.style.position = "absolute";
-    //     e.target.parentNode.style.zIndex = 1000;
-    //     dragged = e.target.parentNode;
-    //     console.log(`dnd btn mousedown`);
-    //     document
-    //       .querySelector(".preview-list")
-    //       .addEventListener("mousemove", event => {
-    //         console.log(`movement in area`);
-    //         this.frame.dragFrame(event, dragged);
-    //       });
-    //   }
-    // });
-    // document.querySelector(".preview-list").addEventListener("mouseup", e => {
-    //   console.log("mouse is up");
-    //   console.log(`target when mouse up is ${e.target}`);
-    //   this.frame.dropFrame(e.target.parentNode);
-    // });
   }
 
   fpsHandler() {
@@ -290,8 +296,11 @@ export default class EventHandler {
   }
 
   onMouseMove(e, size) {
-    const lastX = Math.floor(e.offsetX / size);
-    const lastY = Math.floor(e.offsetY / size);
+    const [lastX, lastY] = [
+      Math.floor(e.offsetX / size),
+      Math.floor(e.offsetY / size)
+    ];
+
     if (tools.eraser) {
       context.globalCompositeOperation = "destination-out";
     } else {
@@ -327,8 +336,7 @@ export default class EventHandler {
         penSize
       );
     }
-    previousCords.firstCord = lastX;
-    previousCords.secondCord = lastY;
+    [previousCords.firstCord, previousCords.secondCord] = [lastX, lastY];
   }
 
   checkPenSize() {
@@ -350,14 +358,12 @@ export default class EventHandler {
     const firstY = Math.floor(e.offsetY / size);
     previousCords.firstCord = firstX;
     previousCords.secondCord = firstY;
-    startPoints.startX = firstX;
-    startPoints.startY = firstY;
+    [startPoints.startX, startPoints.startY] = [firstX, firstY];
     if (tools.eraser) {
       context.globalCompositeOperation = "destination-out";
     } else {
       context.globalCompositeOperation = "source-over";
     }
-    // previousCords = [firstX, firstY];
     if (tools.pencil) {
       const pensize = this.checkPenSize();
       this.canvas.draw(e, size, pensize);

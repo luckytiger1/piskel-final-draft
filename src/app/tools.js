@@ -35,6 +35,8 @@ export default class Tool {
         break;
       }
       default:
+        tools.pencil = true;
+        this.changeActiveState("pencil");
     }
   }
 

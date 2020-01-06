@@ -22,7 +22,8 @@ export default class App {
     this.event.frameHandler();
     this.event.fpsHandler();
     this.event.saveAsGIFHandler();
-    // this.event.frameDnDHandler();
+    this.event.fullscreenHandler();
+    this.event.loginHandler();
     this.canvas.loadCanvas();
     this.frame.createFrame(0);
     // this.preview.previewFrame();
