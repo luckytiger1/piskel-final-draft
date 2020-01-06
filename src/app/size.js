@@ -46,6 +46,8 @@ export default class Size {
         break;
       }
       default:
+        sizes.sizex128 = true;
+        this.changeActiveState("large-canvas");
     }
   }
 
