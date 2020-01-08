@@ -8,8 +8,7 @@ import {
   previousCords,
   startPoints,
   idCount,
-  previewFrames,
-  ctxImageData
+  previewFrames
 } from "../utils/variables";
 import { startAnimating } from "../preview/preview";
 import Canvas from "../canvas/canvas";
@@ -17,7 +16,7 @@ import Size from "../canvas/size/size";
 import Tool from "../canvas/tools/tools";
 import Color from "../canvas/colors/colors";
 import Frame from "../frame/frame";
-import SaveAsGIF from "../saveas/saveAsGIF";
+import SaveAs from "../saveas/saveAs";
 // import Preview from "./preview";
 
 export default class EventHandler {
@@ -27,7 +26,7 @@ export default class EventHandler {
     this.tool = new Tool();
     this.color = new Color();
     this.frame = new Frame();
-    this.saveGIF = new SaveAsGIF();
+    this.save = new SaveAs();
     // this.preview = new Preview();
   }
 
@@ -48,7 +47,6 @@ export default class EventHandler {
   canvasEvents() {
     canvas.addEventListener("mousedown", e => {
       isDrawing.drawing = true;
-      isDrawing.mouseIsDown = true;
       this.color.checkMouseBtn(e);
 
       if (sizes.sizex128) {
@@ -60,26 +58,16 @@ export default class EventHandler {
       if (sizes.sizex32) {
         this.setToolForDrawing(e, 16);
       }
-      ctxImageData.data = canvas.toDataURL();
     });
     canvas.oncontextmenu = e => {
       e.preventDefault();
     };
 
-    canvas.addEventListener("mouseup", e => {
+    canvas.addEventListener("mouseup", () => {
       isDrawing.drawing = false;
-      isDrawing.mouseIsDown = false;
+
       this.canvas.saveCanvas();
       this.frame.showPreviewFrame();
-      const img = new Image();
-      img.src = ctxImageData.data;
-      img.onload = () => {
-        context.drawImage(img, 0, 0);
-      };
-
-      // context.drawImage(ctxImageData.data, 0, 0);
-      // context.putImageData(ctxImageData.data, 0, 0);
-
       console.log(previewFrames);
     });
 
@@ -87,16 +75,15 @@ export default class EventHandler {
       // isDrawing.drawing = true;
 
       // this.checkMouseBtn(e);
-      if (isDrawing.mouseIsDown) {
-        if (sizes.sizex128) {
-          this.onMouseMove(e, 4);
-        }
-        if (sizes.sizex64) {
-          this.onMouseMove(e, 8);
-        }
-        if (sizes.sizex32) {
-          this.onMouseMove(e, 16);
-        }
+
+      if (sizes.sizex128) {
+        this.onMouseMove(e, 4);
+      }
+      if (sizes.sizex64) {
+        this.onMouseMove(e, 8);
+      }
+      if (sizes.sizex32) {
+        this.onMouseMove(e, 16);
       }
     });
 
@@ -288,32 +275,12 @@ export default class EventHandler {
 
   saveAsGIFHandler() {
     document.querySelector(".save-as-gif").addEventListener("click", () => {
-      console.log("save as GIF");
-      this.saveGIF.saveAsGIF();
+      this.save.saveAsGIF();
     });
     document.querySelector(".save-as-apng").addEventListener("click", () => {
-      console.log("save as aPNG");
-      this.saveGIF.saveAsAPNG();
+      this.save.saveAsAPNG();
     });
   }
-  // frameDnDHandler() {
-  //   // document.addEventListener("dragstart", e => {
-  //   //   dragged = e.target;
-  //   //   console.log(dragged);
-  //   //   if(e.target.classList)
-  //   // });
-  //   document.querySelector(".dnd-frame").addEventListener("mousedown", e => {
-  //     console.log(e.target.parentElement);
-  //   });
-  //   // document.querySelector(".preview-list").addEventListener("dragstart", e => {
-  //   //   // e.preventDefault();
-  //   //   dragged = e.target;
-  //   // });
-  //   // document.querySelector(".preview-list").addEventListener("dragover", e => {
-  //   //   // if()
-  //   //   e.preventDefault();
-  //   // });
-  // }
 
   saveData() {
     window.addEventListener("beforeunload", () => {
@@ -348,11 +315,6 @@ export default class EventHandler {
       );
     }
     if (tools.stroke) {
-      const img = new Image();
-      img.src = ctxImageData.data;
-      img.onload = () => {
-        context.drawImage(img, 0, 0);
-      };
       this.canvas.drawLine(
         startPoints.startX,
         lastX,
@@ -360,7 +322,6 @@ export default class EventHandler {
         lastY,
         penSize
       );
-
       // this.canvas.strokeLine(
       //   startPoints.startX,
       //   lastX,
@@ -378,8 +339,6 @@ export default class EventHandler {
         penSize
       );
     }
-    // context.putImageData(ctxImageData.data, 0, 0,);
-
     [previousCords.firstCord, previousCords.secondCord] = [lastX, lastY];
   }
 

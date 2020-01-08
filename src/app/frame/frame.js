@@ -170,6 +170,38 @@ export default class Frame {
   dragFrame(e, item) {
     const selectedTile = item;
     selectedTile.style.left = `${e.pageX - selectedTile.offsetWidth / 2}px`;
+
+    // let dragged;
+    // document.addEventListener("dragstart", e => {
+    //   dragged = e.target;
+    //   if (e.target.classList.contains("dnd-frame")) {
+    //     dragged = e.target.parentElement;
+    //     dragged.style.border = "solid dotted yellow";
+    //     console.log(dragged);
+    //   }
+    // });
+    // document.addEventListener("dragend", e => {
+    //   dragged.style.border = "";
+    // });
+    // document.addEventListener("dragover", e => {
+    //   if (e.target.classList.contains("preview-tile")) {
+    //     e.target.style.border = "3px dotted yellow";
+    //     console.log(dragged);
+    //   }
+    //   e.preventDefault();
+    // });
+    // document.addEventListener("dragenter", e => {
+    //   if (e.target.classList.contains("preview-tile")) {
+    //     e.target.style.border = "3px dotted yellow";
+    //     console.log(dragged);
+    //   }
+    // });
+    // document.addEventListener("dragleave", e => {
+    //   if (e.target.classList.contains("preview-tile")) {
+    //     // e.target.style.border = "3px dotted yellow";
+    //     // console.log(dragged);
+    //   }
+    // });
   }
 
   updateCurrentCanvas(canvasToCopy) {

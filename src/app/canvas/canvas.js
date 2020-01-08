@@ -3,6 +3,7 @@ import { context, canvas, currentColor } from "../utils/variables";
 import Size from "./size/size";
 import Tool from "./tools/tools";
 import Color from "./colors/colors";
+// import Preview from "./preview";
 
 export default class Canvas {
   constructor() {

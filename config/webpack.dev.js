@@ -17,7 +17,7 @@ module.exports = {
   devServer: {
     contentBase: path.join(__dirname, "../build"),
     compress: true,
-    port: 3000,
+    port: 5000,
     overlay: true
   },
   devtool: "cheap-module-eval-source-map",
@@ -46,6 +46,7 @@ module.exports = {
           } // compiles Sass to CSS, using Node Sass by default
         ]
       },
+
       {
         test: /\.(png|svg|jpe?g|gif|.mp3)$/,
         use: [

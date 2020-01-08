@@ -45,6 +45,7 @@ module.exports = {
           } // compiles Sass to CSS, using Node Sass by default
         ]
       },
+
       {
         test: /\.(png|svg|jpe?g|gif)$/,
         use: [
