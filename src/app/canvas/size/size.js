@@ -22,7 +22,6 @@ export default class Size {
       canvas.width,
       canvas.height
     );
-    // context.fillStyle = document.querySelector(".curr-color").style.background;
   }
 
   showSize(s) {

@@ -40,7 +40,6 @@ const isDrawing = { drawing: false, mouseIsDown: null };
 
 const canvas = document.querySelector("#canvas");
 const context = canvas.getContext("2d");
-const fps = parseInt(document.querySelector(".display-fps").innerHTML, 10);
 
 const ctxImageData = {
   data: null
@@ -63,6 +62,5 @@ export {
   idCount,
   previewFrames,
   currentColor,
-  ctxImageData,
-  fps
+  ctxImageData
 };
