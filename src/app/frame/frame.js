@@ -134,6 +134,8 @@ export default class Frame {
       e.target.parentElement.classList.remove("selected");
       // e.target.parentElement.nextElementSibling.classList.add("selected");
     }
+    document.querySelector(".delete-frame").style.display = "block";
+    document.querySelector(".dnd-frame").style.display = "block";
     // const parentNode = document.querySelector("#preview-list");
     const currentTile = e.target.parentElement;
     const tileCopy = currentTile.cloneNode(true);
@@ -150,11 +152,10 @@ export default class Frame {
 
     this.updateCurrentCanvas(canvasToCopy);
     currentTile.after(tileCopy);
-
+    console.log();
     // parentNode.insertBefore(tileCopy, currentTile);
     // currentTile = tileCopy;
-    this.changeBtnStyle();
-    // currentTile.insertAdjacentHTML("afterend", tileCopy);
+    // this.changeBtnStyle();
   }
 
   dropFrame(item) {
@@ -230,9 +231,10 @@ export default class Frame {
   }
 
   changeBtnStyle() {
-    if (document.querySelectorAll(".preview-tile").length <= 1) {
+    if (document.querySelectorAll(".preview-tile").length === 1) {
       document.querySelector(".delete-frame").style.display = "none";
       document.querySelector(".dnd-frame").style.display = "none";
+      console.log(document.querySelector(".dnd-frame").style.display);
     } else {
       document.querySelector(".delete-frame").style.display = "block";
       document.querySelector(".dnd-frame").style.display = "block";
