@@ -1,5 +1,5 @@
 /* eslint-disable class-methods-use-this */
-import { sizes, canvas, context } from "./variables";
+import { sizes, canvas, context } from "../../utils/variables";
 
 export default class Size {
   reSize(w, h) {

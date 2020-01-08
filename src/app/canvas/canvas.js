@@ -1,8 +1,8 @@
 /* eslint-disable class-methods-use-this */
-import { context, canvas, currentColor } from "./variables";
-import Size from "./size";
-import Tool from "./tools";
-import Color from "./colors";
+import { context, canvas, currentColor } from "../utils/variables";
+import Size from "./size/size";
+import Tool from "./tools/tools";
+import Color from "./colors/colors";
 // import Preview from "./preview";
 
 export default class Canvas {
@@ -10,7 +10,6 @@ export default class Canvas {
     this.size = new Size();
     this.tool = new Tool();
     this.color = new Color();
-    // this.preview = new Preview();
   }
 
   loadCanvas() {
@@ -18,14 +17,13 @@ export default class Canvas {
     document.querySelector("#penx1").checked = true;
     const currSize = localStorage.getItem("currSize");
     const currTool = localStorage.getItem("currTool");
-    console.log(`currSize is ${currSize}`);
-    console.log(`currTool is ${currTool}`);
     this.size.showSize(currSize);
     this.tool.showTool(currTool);
     this.color.showColors();
     const prevCanvas = localStorage.getItem("prev-canvas");
     const img = new Image();
     img.src = prevCanvas;
+
     img.onload = () => {
       context.drawImage(img, 0, 0);
     };
@@ -35,15 +33,6 @@ export default class Canvas {
       document.querySelector(".range-fps").value
     } FPS`;
   }
-  // loadPreviewCanvas() {
-  //   const previewCanvas = document.querySelector("#preview-canvas");
-  //   const previewCtx = previewCanvas.getContext("2d");
-  //   const img = new Image();
-  //   img.src = canvas.toDataURL();
-  //   img.onload = () => {
-  //     previewCtx.drawImage(img, 0, 0);
-  //   };
-  // }
 
   drawLine(x0, x1, y0, y1, size) {
     const dx = Math.abs(x1 - x0);
@@ -101,13 +90,11 @@ export default class Canvas {
   strokeLine(x0, x1, y0, y1, size) {
     context.imageSmoothingEnabled = false;
     context.clearRect(0, 0, canvas.width, canvas.height);
-    console.log(this.isCanvasBlank());
     const img = new Image();
     img.src = localStorage.getItem("prev-canvas");
 
     context.drawImage(img, 0, 0, canvas.width, canvas.height);
 
-    // this.event.checkMouseBtn();
     context.lineWidth = size;
     context.beginPath();
     console.log(
@@ -116,8 +103,6 @@ export default class Canvas {
     context.moveTo(x1, y1 + 0.5);
     context.lineTo(x0, y0 + 0.5);
     context.stroke();
-    // context.translate(0.5, 0.5);
-    // context.closePath();
   }
 
   getPixel(pixelData, x, y) {
@@ -193,12 +178,11 @@ export default class Canvas {
   fillSameColors(x, y) {
     const pixel = context.getImageData(x, y, 1, 1).data;
     const prevColor = `rgb(${pixel[0]}, ${pixel[1]}, ${pixel[2]})`;
-
-    for (let i = 0; x < canvas.width; i += 1) {
-      for (let j = 0; y < canvas.height; j += 1) {
+    for (let i = 0; i < canvas.width; i += 1) {
+      for (let j = 0; j < canvas.height; j += 1) {
         const point = context.getImageData(i, j, 1, 1).data;
         const currColor = `rgb(${point[0]}, ${point[1]}, ${point[2]})`;
-        console.log("fill is working!");
+
         if (currColor === prevColor) {
           context.fillRect(i, j, 1, 1);
         }
@@ -218,8 +202,6 @@ export default class Canvas {
   }
 
   pickColor(x, y, event) {
-    // const x = event.offsetX;
-    // const y = event.offsetY;
     const pixel = context.getImageData(x, y, 1, 1);
     const { data } = pixel;
     const rgba = `rgba(${data[0]}, ${data[1]}, ${data[2]}, ${data[3] / 255})`;
@@ -234,16 +216,5 @@ export default class Canvas {
     const imageData = canvas.toDataURL();
 
     localStorage.setItem("prev-canvas", imageData);
-
-    // this.preview.previewFrame();
-    // requestAnimationFrame(this.preview.step);
-
-    // for (let i = 0; i < idCount.count; i += 1) {
-    //   const previewCanvases = document.querySelectorAll(".preview-tile")[i]
-    //     .childNodes[0].firstElementChild;
-
-    //   previewFrames.push(previewCanvases.toDataURL());
-    //   console.log(previewFrames);
-    // }
   }
 }

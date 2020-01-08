@@ -11,7 +11,8 @@ const glob = require("glob");
 
 module.exports = {
   entry: {
-    main: "./src/app/index.js"
+    project: "./src/app/index.js",
+    main: "./src/app/landing.js"
   },
   output: {
     path: path.resolve(__dirname, "../build"),
@@ -99,8 +100,18 @@ module.exports = {
     }),
     // The plugin will generate an HTML5 file for you that includes all your webpack bundles in the body using script tags
     new HtmlWebpackPlugin({
+      title: "Landing page",
       template: "./src/html/index.html",
-      filename: "index.html"
+      filename: "index.html",
+      inject: true,
+      chunks: ["main"]
+    }),
+    new HtmlWebpackPlugin({
+      title: "Project page",
+      template: "./src/html/project.html",
+      filename: "project.html",
+      inject: true,
+      chunks: ["project"]
     }),
     // ComppresionPlugin will Prepare compressed versions of assets to serve them with Content-Encoding.
     // In this case we use gzip

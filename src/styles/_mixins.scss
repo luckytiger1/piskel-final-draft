@@ -1,0 +1,17 @@
+@mixin logo {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 23px;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.87);
+}
+@mixin instrument {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+  color: rgba(0, 0, 0, 0.541327);
+}

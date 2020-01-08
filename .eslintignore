@@ -6,3 +6,6 @@ postcss.config.js
 gif.js
 gif.worker.js
 gif-encoder.js
+b64.js
+NeuQuant.js
+GIFEncoder.js

@@ -1,28 +1,11 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-const fs = require("fs");
-
-// function generateHtmlPlugins(templateDir) {
-//   const templateFiles = fs.readdirSync(path.resolve(__dirname, templateDir));
-//   return templateFiles.map(item => {
-//     const parts = item.split(".");
-//     const name = parts[0];
-//     const extension = parts[1];
-//     return new HtmlWebpackPlugin({
-//       filename: `${name}.html`,
-//       template: path.resolve(__dirname, `${templateDir}/${name}.${extension}`),
-//       inject: false
-//     });
-//   });
-// }
-
-// const htmlPlugins = generateHtmlPlugins("../src/html/");
 
 module.exports = {
   entry: {
-    main: "./src/app/index.js"
-    // landing: "./src/app/landing.js"
+    project: "./src/app/index.js",
+    main: "./src/app/landing.js"
   },
   output: {
     path: path.resolve(__dirname, "../build"),
@@ -93,14 +76,18 @@ module.exports = {
     new CleanWebpackPlugin({}),
     // The plugin will generate an HTML5 file for you that includes all your webpack bundles in the body using script tags
     new HtmlWebpackPlugin({
+      title: "Landing page",
       template: "./src/html/index.html",
-      filename: "index.html"
+      filename: "index.html",
+      inject: true,
+      chunks: ["main"]
+    }),
+    new HtmlWebpackPlugin({
+      title: "Project page",
+      template: "./src/html/project.html",
+      filename: "project.html",
+      inject: true,
+      chunks: ["project"]
     })
-    // new HtmlWebpackPlugin({
-    //   template: "./src/landing.html",
-    //   filename: "landing.html",
-    //   inject: true,
-    //   chunks: ["landing"]
-    // })
   ]
 };

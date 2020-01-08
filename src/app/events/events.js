@@ -8,16 +8,16 @@ import {
   previousCords,
   startPoints,
   idCount,
-  previewFrames
-} from "./variables";
-import setLogin from "./login";
-import { startAnimating } from "./preview";
-import Canvas from "./canvas";
-import Size from "./size";
-import Tool from "./tools";
-import Color from "./colors";
-import Frame from "./frame";
-import SaveAsGIF from "./saveAsGIF";
+  previewFrames,
+  ctxImageData
+} from "../utils/variables";
+import { startAnimating } from "../preview/preview";
+import Canvas from "../canvas/canvas";
+import Size from "../canvas/size/size";
+import Tool from "../canvas/tools/tools";
+import Color from "../canvas/colors/colors";
+import Frame from "../frame/frame";
+import SaveAsGIF from "../saveas/saveAsGIF";
 // import Preview from "./preview";
 
 export default class EventHandler {
@@ -48,6 +48,7 @@ export default class EventHandler {
   canvasEvents() {
     canvas.addEventListener("mousedown", e => {
       isDrawing.drawing = true;
+      isDrawing.mouseIsDown = true;
       this.color.checkMouseBtn(e);
 
       if (sizes.sizex128) {
@@ -59,16 +60,26 @@ export default class EventHandler {
       if (sizes.sizex32) {
         this.setToolForDrawing(e, 16);
       }
+      ctxImageData.data = canvas.toDataURL();
     });
     canvas.oncontextmenu = e => {
       e.preventDefault();
     };
 
-    canvas.addEventListener("mouseup", () => {
+    canvas.addEventListener("mouseup", e => {
       isDrawing.drawing = false;
-
+      isDrawing.mouseIsDown = false;
       this.canvas.saveCanvas();
       this.frame.showPreviewFrame();
+      const img = new Image();
+      img.src = ctxImageData.data;
+      img.onload = () => {
+        context.drawImage(img, 0, 0);
+      };
+
+      // context.drawImage(ctxImageData.data, 0, 0);
+      // context.putImageData(ctxImageData.data, 0, 0);
+
       console.log(previewFrames);
     });
 
@@ -76,15 +87,16 @@ export default class EventHandler {
       // isDrawing.drawing = true;
 
       // this.checkMouseBtn(e);
-
-      if (sizes.sizex128) {
-        this.onMouseMove(e, 4);
-      }
-      if (sizes.sizex64) {
-        this.onMouseMove(e, 8);
-      }
-      if (sizes.sizex32) {
-        this.onMouseMove(e, 16);
+      if (isDrawing.mouseIsDown) {
+        if (sizes.sizex128) {
+          this.onMouseMove(e, 4);
+        }
+        if (sizes.sizex64) {
+          this.onMouseMove(e, 8);
+        }
+        if (sizes.sizex32) {
+          this.onMouseMove(e, 16);
+        }
       }
     });
 
@@ -183,15 +195,9 @@ export default class EventHandler {
   loginHandler() {
     // eslint-disable-next-line no-undef
     netlifyIdentity.on("login", () => {
-      // setLogin();
       const outputText = document.querySelector(".login-text");
       const profilePic = document.querySelector(".profile-pic");
-
       outputText.style.display = "block";
-      // eslint-disable-next-line no-undef
-      console.log(netlifyIdentity);
-      // eslint-disable-next-line no-undef
-      console.log(netlifyIdentity.currentUser);
       profilePic.style.backgroundImage = `url('${
         // eslint-disable-next-line no-undef
         netlifyIdentity.currentUser().user_metadata.avatar_url
@@ -209,8 +215,6 @@ export default class EventHandler {
 
       outputText.style.display = "none";
       profilePic.style.display = "none";
-      // eslint-disable-next-line no-undef
-      // netlifyIdentity.logout();
     });
   }
 
@@ -287,6 +291,10 @@ export default class EventHandler {
       console.log("save as GIF");
       this.saveGIF.saveAsGIF();
     });
+    document.querySelector(".save-as-apng").addEventListener("click", () => {
+      console.log("save as aPNG");
+      this.saveGIF.saveAsAPNG();
+    });
   }
   // frameDnDHandler() {
   //   // document.addEventListener("dragstart", e => {
@@ -340,13 +348,26 @@ export default class EventHandler {
       );
     }
     if (tools.stroke) {
-      this.canvas.strokeLine(
+      const img = new Image();
+      img.src = ctxImageData.data;
+      img.onload = () => {
+        context.drawImage(img, 0, 0);
+      };
+      this.canvas.drawLine(
         startPoints.startX,
         lastX,
         startPoints.startY,
         lastY,
         penSize
       );
+
+      // this.canvas.strokeLine(
+      //   startPoints.startX,
+      //   lastX,
+      //   startPoints.startY,
+      //   lastY,
+      //   penSize
+      // );
     }
     if (tools.eraser) {
       this.canvas.drawLine(
@@ -357,6 +378,8 @@ export default class EventHandler {
         penSize
       );
     }
+    // context.putImageData(ctxImageData.data, 0, 0,);
+
     [previousCords.firstCord, previousCords.secondCord] = [lastX, lastY];
   }
 
@@ -385,21 +408,18 @@ export default class EventHandler {
     } else {
       context.globalCompositeOperation = "source-over";
     }
+    const pensize = this.checkPenSize();
     if (tools.pencil) {
-      const pensize = this.checkPenSize();
       this.canvas.draw(e, size, pensize);
     } else if (tools.bucket) {
       this.canvas.fillCanvas(firstX, firstY);
     } else if (tools.colorPicker) {
       this.canvas.pickColor(firstX, firstY, e);
-    } else if (tools.eraser) {
-      this.canvas.eraserTool(e);
     } else if (tools.sameFill) {
       this.canvas.fillSameColors(firstX, firstY);
+    } else if (tools.stroke) {
+      this.canvas.draw(e, size, pensize);
     }
-    //  else if (tools.stroke) {
-    //   this.canvas.strokeLine(e, size);
-    // }
   }
 
   handleSize(size, sizeFlag, id) {

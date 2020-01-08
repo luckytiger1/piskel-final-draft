@@ -1,5 +1,5 @@
-import Canvas from "./canvas";
-import { canvas, context, previewFrames } from "./variables";
+import Canvas from "../canvas/canvas";
+import { canvas, context, previewFrames } from "../utils/variables";
 
 /* eslint-disable class-methods-use-this */
 

@@ -36,10 +36,15 @@ const idCount = {
   count: 1
 };
 // eslint-disable-next-line import/no-mutable-exports
-const isDrawing = { drawing: false };
+const isDrawing = { drawing: false, mouseIsDown: null };
 
 const canvas = document.querySelector("#canvas");
 const context = canvas.getContext("2d");
+const fps = parseInt(document.querySelector(".display-fps").innerHTML, 10);
+
+const ctxImageData = {
+  data: null
+};
 
 const currentColor = {
   value: null
@@ -57,5 +62,7 @@ export {
   startPoints,
   idCount,
   previewFrames,
-  currentColor
+  currentColor,
+  ctxImageData,
+  fps
 };

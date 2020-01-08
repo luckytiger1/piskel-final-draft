@@ -1,5 +1,5 @@
 /* eslint-disable class-methods-use-this */
-import { tools } from "./variables";
+import { tools } from "../../utils/variables";
 
 export default class Tool {
   showTool(tool) {

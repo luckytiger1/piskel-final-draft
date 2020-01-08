@@ -1,5 +1,5 @@
 /* eslint-disable class-methods-use-this */
-import { context, currentColor } from "./variables";
+import { context, currentColor } from "../../utils/variables";
 
 export default class Color {
   pickColor(event, size) {
@@ -16,10 +16,14 @@ export default class Color {
   showColors() {
     document.querySelector(
       ".curr-color"
-    ).style.background = localStorage.getItem("currColorOld");
+    ).style.background = localStorage.getItem("currColorOld")
+      ? localStorage.getItem("currColorOld")
+      : "#ff0000";
     document.querySelector(
       ".prev-color-btn"
-    ).style.background = localStorage.getItem("prevColorOld");
+    ).style.background = localStorage.getItem("prevColorOld")
+      ? localStorage.getItem("prevColorOld")
+      : "#0000ff";
   }
 
   setColor() {}

@@ -1,3 +1,15 @@
+@import "header.scss";
+@import "_mixins.scss";
+
 body {
-  background: red;
+}
+
+.main__screenshot {
+  display: flex;
+  &-photo-container {
+    display: block;
+    background: url("../img/piskel-clone-screenshot.png") no-repeat;
+    background-size: contain;
+    height: 400px;
+  }
 }

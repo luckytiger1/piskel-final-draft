@@ -1,7 +1,6 @@
 /* eslint-disable class-methods-use-this */
-import GIF from "gif.js-upgrade/dist/gif";
-
-import { previewFrames, canvas } from "./variables";
+import { previewFrames } from "../utils/variables";
+// const gif = require("gif.js-upgrade");
 
 const previewFrameContainer = document.querySelector(
   ".background-image-frame-container"
@@ -48,28 +47,12 @@ function animate(newtime) {
     // draw stuff here
 
     // TESTING...Report #seconds since start and achieved fps.
-    const gif = new GIF({
-      workers: 2,
-      workerScript: "/gif.js-upgrade/dist/gif.worker.js",
-      width: canvas.width,
-      height: canvas.height,
-      quality: 10,
-      repeat: 0
-    });
-
-    // add an image element
-
-    // or a canvas element
 
     // gif.addFrame(context, { copy: true });
     document.querySelectorAll(".preview-tile").forEach((el, index) => {
       previewFrames.allFrames[
         index
       ] = el.childNodes[0].firstElementChild.toDataURL();
-
-      gif.addFrame(el.childNodes[0].firstElementChild, {
-        delay: 200
-      });
     });
 
     previewFrameContainer.style.backgroundImage = `url('${previewFrames.allFrames[j]}')`;

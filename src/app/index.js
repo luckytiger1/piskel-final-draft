@@ -1,8 +1,8 @@
-import EventHandler from "./events";
+import EventHandler from "./events/events";
 import "../styles/style.scss";
-import Canvas from "./canvas";
-import Frame from "./frame";
-import "./preview";
+import Canvas from "./canvas/canvas";
+import Frame from "./frame/frame";
+import "./preview/preview";
 
 export default class App {
   constructor() {
