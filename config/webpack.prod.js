@@ -104,7 +104,7 @@ module.exports = {
       title: "Landing page",
       template: "./src/html/index.html",
       filename: "index.html",
-      chunks: ["main", "runtime"]
+      chunks: ["main"]
     }),
     new HtmlWebpackPlugin({
       title: "Project page",
