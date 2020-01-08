@@ -80,14 +80,12 @@ module.exports = {
       title: "Landing page",
       template: "./src/html/index.html",
       filename: "index.html",
-      inject: true,
       chunks: ["main"]
     }),
     new HtmlWebpackPlugin({
       title: "Project page",
       template: "./src/html/project.html",
       filename: "project.html",
-      inject: true,
       chunks: ["project"]
     })
   ]

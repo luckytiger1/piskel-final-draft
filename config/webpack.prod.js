@@ -16,8 +16,8 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, "../build"),
-    filename: "[name].[chunkhash:8].bundle.js",
-    chunkFilename: "[name].[chunkhash:8].chunk.js"
+    filename: "[name].[chunkhash:8].bundle.js"
+    // chunkFilename: "[name].[chunkhash:8].chunk.js"
   },
   mode: "production",
   module: {
@@ -104,14 +104,12 @@ module.exports = {
       title: "Landing page",
       template: "./src/html/index.html",
       filename: "index.html",
-      inject: true,
       chunks: ["main"]
     }),
     new HtmlWebpackPlugin({
       title: "Project page",
       template: "./src/html/project.html",
       filename: "project.html",
-      inject: true,
       chunks: ["project"]
     }),
     // ComppresionPlugin will Prepare compressed versions of assets to serve them with Content-Encoding.
