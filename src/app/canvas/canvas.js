@@ -33,8 +33,7 @@ export default class Canvas {
     img.onload = () => {
       context.drawImage(img, 0, 0);
     };
-    console.log(tools);
-    console.log(sizes);
+
     document.querySelector(".range-fps").value = 0;
     document.querySelector(".display-fps").innerHTML = `${
       document.querySelector(".range-fps").value
@@ -104,9 +103,7 @@ export default class Canvas {
 
     context.lineWidth = size;
     context.beginPath();
-    console.log(
-      `x0 is ${x0},y0 is ${y0 + 0.5} and x1 is ${x1},y1 is ${y1 + 0.5}`
-    );
+
     context.moveTo(x1, y1 + 0.5);
     context.lineTo(x0, y0 + 0.5);
     context.stroke();

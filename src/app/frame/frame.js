@@ -121,7 +121,6 @@ export default class Frame {
     this.changeSelectedTile(e);
 
     document.querySelector("#preview-list").removeChild(tile);
-    previewFrames.allFrames.length -= 1;
     const item = e.target.parentElement.childNodes[0].firstElementChild.toDataURL();
     const index = previewFrames.allFrames.indexOf(item);
     if (index !== -1) {
@@ -170,38 +169,6 @@ export default class Frame {
   dragFrame(e, item) {
     const selectedTile = item;
     selectedTile.style.left = `${e.pageX - selectedTile.offsetWidth / 2}px`;
-
-    // let dragged;
-    // document.addEventListener("dragstart", e => {
-    //   dragged = e.target;
-    //   if (e.target.classList.contains("dnd-frame")) {
-    //     dragged = e.target.parentElement;
-    //     dragged.style.border = "solid dotted yellow";
-    //     console.log(dragged);
-    //   }
-    // });
-    // document.addEventListener("dragend", e => {
-    //   dragged.style.border = "";
-    // });
-    // document.addEventListener("dragover", e => {
-    //   if (e.target.classList.contains("preview-tile")) {
-    //     e.target.style.border = "3px dotted yellow";
-    //     console.log(dragged);
-    //   }
-    //   e.preventDefault();
-    // });
-    // document.addEventListener("dragenter", e => {
-    //   if (e.target.classList.contains("preview-tile")) {
-    //     e.target.style.border = "3px dotted yellow";
-    //     console.log(dragged);
-    //   }
-    // });
-    // document.addEventListener("dragleave", e => {
-    //   if (e.target.classList.contains("preview-tile")) {
-    //     // e.target.style.border = "3px dotted yellow";
-    //     // console.log(dragged);
-    //   }
-    // });
   }
 
   updateCurrentCanvas(canvasToCopy) {
@@ -242,10 +209,8 @@ export default class Frame {
   }
 
   updateCanvasAfterDeletion(elem) {
-    console.log("canvas updated");
-    console.log(elem);
     const newCanvas = elem.childNodes[0].firstElementChild;
-    console.log(newCanvas);
+
     const img = new Image();
     img.src = newCanvas.toDataURL();
     newCanvas.getContext("2d").imageSmoothingEnabled = false;

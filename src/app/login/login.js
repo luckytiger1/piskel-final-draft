@@ -7,7 +7,6 @@ async function setLogin() {
   });
   const data = await response.json();
   const { login } = data;
-  console.log(data);
   outputText.style.display = "block";
   // if (data) {
   outputText.innerText = ` Welcome, ${login}!`;
