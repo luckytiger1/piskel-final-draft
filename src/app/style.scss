@@ -1,6 +1,6 @@
 @import "normalize.scss";
-@import "header.scss";
-@import "_mixins.scss";
+@import "./landing/header.scss";
+@import "./landing/mixins";
 
 body {
   user-select: none;

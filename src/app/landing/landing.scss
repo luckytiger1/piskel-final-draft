@@ -8,7 +8,7 @@ body {
   display: flex;
   &-photo-container {
     display: block;
-    background: url("../img/piskel-clone-screenshot.png") no-repeat;
+    background: url("./img/piskel-clone-screenshot.png") no-repeat;
     background-size: contain;
     height: 400px;
   }
@@ -27,7 +27,7 @@ body {
     width: 50%;
     &--img {
       display: block;
-      background: url("../img/feature-live-preview.gif") no-repeat;
+      background: url("./img/feature-live-preview.gif") no-repeat;
 
       width: 100%;
       height: 150px;

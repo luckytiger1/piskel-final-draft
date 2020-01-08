@@ -11,8 +11,8 @@ const glob = require("glob");
 
 module.exports = {
   entry: {
-    project: "./src/app/index.js",
-    main: "./src/app/landing.js"
+    main: "./src/app/landing/landing.js",
+    project: "./src/app/index.js"
   },
   output: {
     path: path.resolve(__dirname, "../build"),

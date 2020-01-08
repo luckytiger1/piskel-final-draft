@@ -1,5 +1,5 @@
 import EventHandler from "./events/events";
-import "../styles/style.scss";
+import "./style.scss";
 import Canvas from "./canvas/canvas";
 import Frame from "./frame/frame";
 import "./preview/preview";
