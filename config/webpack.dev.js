@@ -80,13 +80,13 @@ module.exports = {
       title: "Landing page",
       template: "./src/html/index.html",
       filename: "index.html",
-      chunks: ["main"]
+      chunks: ["main", "runtime"]
     }),
     new HtmlWebpackPlugin({
       title: "Project page",
       template: "./src/html/project.html",
       filename: "project.html",
-      chunks: ["project"]
+      chunks: ["project", "runtime", "vendors"]
     })
   ]
 };

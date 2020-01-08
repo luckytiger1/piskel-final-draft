@@ -7,8 +7,7 @@ import {
   isDrawing,
   previousCords,
   startPoints,
-  idCount,
-  previewFrames
+  idCount
 } from "../utils/variables";
 import { startAnimating } from "../preview/preview";
 import Canvas from "../canvas/canvas";
@@ -68,7 +67,6 @@ export default class EventHandler {
 
       this.canvas.saveCanvas();
       this.frame.showPreviewFrame();
-      console.log(previewFrames);
     });
 
     canvas.addEventListener("mousemove", e => {
@@ -312,7 +310,6 @@ export default class EventHandler {
         lastY,
         penSize
       );
-      console.log(`tool is pencil`);
     }
     if (tools.stroke) {
       this.canvas.drawLine(
@@ -322,7 +319,6 @@ export default class EventHandler {
         lastY,
         penSize
       );
-      console.log(`tool is stroke`);
 
       // this.canvas.strokeLine(
       //   startPoints.startX,
