@@ -1,5 +1,11 @@
 /* eslint-disable class-methods-use-this */
-import { context, canvas, currentColor } from "../utils/variables";
+import {
+  context,
+  canvas,
+  currentColor,
+  tools,
+  sizes
+} from "../utils/variables";
 import Size from "./size/size";
 import Tool from "./tools/tools";
 import Color from "./colors/colors";
@@ -27,7 +33,8 @@ export default class Canvas {
     img.onload = () => {
       context.drawImage(img, 0, 0);
     };
-
+    console.log(tools);
+    console.log(sizes);
     document.querySelector(".range-fps").value = 0;
     document.querySelector(".display-fps").innerHTML = `${
       document.querySelector(".range-fps").value

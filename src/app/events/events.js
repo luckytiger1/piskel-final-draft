@@ -75,7 +75,6 @@ export default class EventHandler {
       // isDrawing.drawing = true;
 
       // this.checkMouseBtn(e);
-
       if (sizes.sizex128) {
         this.onMouseMove(e, 4);
       }
@@ -313,6 +312,7 @@ export default class EventHandler {
         lastY,
         penSize
       );
+      console.log(`tool is pencil`);
     }
     if (tools.stroke) {
       this.canvas.drawLine(
@@ -322,6 +322,8 @@ export default class EventHandler {
         lastY,
         penSize
       );
+      console.log(`tool is stroke`);
+
       // this.canvas.strokeLine(
       //   startPoints.startX,
       //   lastX,
