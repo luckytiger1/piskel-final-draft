@@ -30,12 +30,12 @@ export default class Frame {
     canvasContainer.append(canvasEl, canvasBg);
     this.changeBtnStyle();
     context.clearRect(0, 0, canvas.width, canvas.height);
-    // listItem.setAttribute("draggable", true);
     const previewTile = document.querySelectorAll(".preview-tile");
     [].forEach.call(previewTile, el => {
       el.classList.remove("selected");
     });
     listItem.classList.add("selected");
+    this.updateAttribute();
   }
 
   firstFrameOnFirstLoad() {
@@ -103,6 +103,9 @@ export default class Frame {
       "delete-frame-icon",
       "tile-overlay"
     );
+
+    this.setTooltipAttributes(deleteFrameBtn, "Delete Frame (J)");
+
     return deleteFrameBtn;
   }
 
@@ -113,6 +116,9 @@ export default class Frame {
       "duplicate-frame-icon",
       "tile-overlay"
     );
+
+    this.setTooltipAttributes(duplicateFrameBtn, "Duplicate Frame (H)");
+
     return duplicateFrameBtn;
   }
 
@@ -127,16 +133,15 @@ export default class Frame {
       previewFrames.allFrames.splice(index, 1);
     }
     this.changeBtnStyle();
+    this.updateAttribute();
   }
 
   duplicateFrame(e) {
     if (e.target.parentElement.classList.contains("selected")) {
       e.target.parentElement.classList.remove("selected");
-      // e.target.parentElement.nextElementSibling.classList.add("selected");
     }
     document.querySelector(".delete-frame").style.display = "block";
     document.querySelector(".dnd-frame").style.display = "block";
-    // const parentNode = document.querySelector("#preview-list");
     const currentTile = e.target.parentElement;
     const tileCopy = currentTile.cloneNode(true);
     const canvasToCopy = currentTile.childNodes[0].firstElementChild;
@@ -152,17 +157,12 @@ export default class Frame {
 
     this.updateCurrentCanvas(canvasToCopy);
     currentTile.after(tileCopy);
-    console.log();
-    // parentNode.insertBefore(tileCopy, currentTile);
-    // currentTile = tileCopy;
-    // this.changeBtnStyle();
+    this.updateAttribute();
   }
 
   dropFrame(item) {
     const selectedTile = item;
-
     selectedTile.style.position = "relative";
-    // e.target.parentNode.style.position = "absolute";
     selectedTile.style.zIndex = 1000;
     selectedTile.style.left = "";
   }
@@ -187,11 +187,6 @@ export default class Frame {
     );
   }
 
-  // async saveFrames() {
-  //   await
-  //   console.log(previewFrames);
-  // }
-
   changeSelectedTile(e) {
     if (e.target.parentElement.classList.contains("selected")) {
       if (e.target.parentElement.previousElementSibling) {
@@ -202,6 +197,7 @@ export default class Frame {
         );
       } else {
         e.target.parentElement.nextElementSibling.classList.add("selected");
+
         this.updateCanvasAfterDeletion(
           e.target.parentElement.nextElementSibling
         );
@@ -211,7 +207,6 @@ export default class Frame {
 
   updateCanvasAfterDeletion(elem) {
     const newCanvas = elem.childNodes[0].firstElementChild;
-
     const img = new Image();
     img.src = newCanvas.toDataURL();
     newCanvas.getContext("2d").imageSmoothingEnabled = false;
@@ -234,10 +229,21 @@ export default class Frame {
     if (document.querySelectorAll(".preview-tile").length === 1) {
       document.querySelector(".delete-frame").style.display = "none";
       document.querySelector(".dnd-frame").style.display = "none";
-      console.log(document.querySelector(".dnd-frame").style.display);
     } else {
       document.querySelector(".delete-frame").style.display = "block";
       document.querySelector(".dnd-frame").style.display = "block";
     }
+  }
+
+  updateAttribute() {
+    document.querySelectorAll(".preview-tile").forEach((el, index) => {
+      el.setAttribute("data-tile-number", index);
+    });
+  }
+
+  setTooltipAttributes(elem, title) {
+    elem.setAttribute("data-toggle", "tooltip");
+    elem.setAttribute("data-placement", "right");
+    elem.setAttribute("title", title);
   }
 }

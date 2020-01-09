@@ -37,8 +37,8 @@ export default class Color {
     localStorage.setItem("prevColorOld", prevColorOldValue);
   }
 
-  changeColor(name) {
-    context.fillStyle = name === ".red-btn" ? "#ff0000" : "#0000ff";
+  changeColor(name, ctx) {
+    ctx.fillStyle = name === ".red-btn" ? "#ff0000" : "#0000ff";
 
     document.querySelector(".curr-color").style.background =
       name === ".red-btn" ? "#ff0000" : "#0000ff";

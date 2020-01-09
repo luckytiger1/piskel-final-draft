@@ -31,6 +31,8 @@ export default class EventHandler {
 
   loadItems() {
     window.addEventListener("DOMContentLoaded", () => {
+      document.querySelector('[data-toggle="tooltip"]').tooltip();
+
       if (localStorage.getItem("currSize") === null) {
         sizes.sizex32 = true;
       }
@@ -152,6 +154,36 @@ export default class EventHandler {
           case "KeyC":
             document.querySelector(".choose-color-btn").click();
             break;
+          case "KeyE":
+            document.querySelector(".eraser-btn").click();
+            break;
+          case "KeyL":
+            document.querySelector(".stroke-btn").click();
+            break;
+          case "KeyW":
+            document.querySelector(".same-color-fill-btn").click();
+            break;
+          case "KeyS":
+            document.querySelector(".save-as-gif").click();
+            break;
+          case "KeyG":
+            document.querySelector(".save-as-apng").click();
+            break;
+          case "KeyK":
+            document.querySelector(".add__frame__btn").click();
+            break;
+          case "KeyH":
+            document
+              .querySelector(".preview-tile.selected")
+              .children[2].click();
+            break;
+          case "KeyJ":
+            if (document.querySelectorAll(".preview-tile").length > 1) {
+              document
+                .querySelector(".preview-tile.selected")
+                .children[1].click();
+            }
+            break;
           default:
         }
       }
@@ -165,7 +197,6 @@ export default class EventHandler {
         if ("fullscreenEnabled" in document) {
           if (document.fullscreenEnabled) {
             console.log("User allows fullscreen");
-
             if ("requestFullscreen" in e.target) {
               e.target.requestFullscreen();
             }
@@ -214,12 +245,12 @@ export default class EventHandler {
     });
 
     document.querySelector(".blue-btn").addEventListener("click", () => {
-      this.color.changeColor(".blue-btn");
+      this.color.changeColor(".blue-btn", context);
       this.changeState(".blue-btn");
     });
 
     document.querySelector(".red-btn").addEventListener("click", () => {
-      this.color.changeColor(".red-btn");
+      this.color.changeColor(".red-btn", context);
       this.changeState(".red-btn");
     });
 

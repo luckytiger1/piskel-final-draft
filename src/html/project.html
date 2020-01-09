@@ -40,16 +40,31 @@
         <div class="main__instruments__container-block1">
           <ul class="main__instruments__container-block1__list">
             <li class="list-item bucketBtn">
-              <button class="bucket-btn">
+              <button
+                class="bucket-btn"
+                data-toggle="tooltip"
+                data-placement="right"
+                title="Paint Bucket (B)"
+              >
                 Paint Bucket
               </button>
             </li>
             <li class="list-item chooseColorBtn">
-              <button class="choose-color-btn">
+              <button
+                class="choose-color-btn"
+                data-toggle="tooltip"
+                data-placement="right"
+                title="Choose color (C)"
+              >
                 Choose color
               </button>
             </li>
-            <li class="list-item pencil active">
+            <li
+              class="list-item pencil active"
+              data-toggle="tooltip"
+              data-placement="right"
+              title="Pencil (P)"
+            >
               <button class="pencil-btn">
                 <span class="pencil-text">
                   Pencil
@@ -57,17 +72,32 @@
               </button>
             </li>
             <li class="list-item eraserBtn">
-              <button class="eraser-btn">
+              <button
+                class="eraser-btn"
+                data-toggle="tooltip"
+                data-placement="right"
+                title="Eraser (E)"
+              >
                 Eraser
               </button>
             </li>
             <li class="list-item strokeBtn">
-              <button class="stroke-btn">
+              <button
+                class="stroke-btn"
+                data-toggle="tooltip"
+                data-placement="right"
+                title="Stroke (L)"
+              >
                 Stroke
               </button>
             </li>
             <li class="list-item sameColorFillBtn">
-              <button class="same-color-fill-btn">
+              <button
+                class="same-color-fill-btn"
+                data-toggle="tooltip"
+                data-placement="right"
+                title="Fill Same Colors (W)"
+              >
                 Fill Same Colors
               </button>
             </li>
@@ -138,7 +168,12 @@
       <div class="main__frames container">
         <div class="main__frames--scroller">
           <ul class="preview-list" id="preview-list"></ul>
-          <div class="add__frame__btn">
+          <div
+            class="add__frame__btn"
+            data-toggle="tooltip"
+            data-placement="right"
+            title="Add new frame (K)"
+          >
             <span class="label">Add new frame</span>
           </div>
         </div>
@@ -174,13 +209,42 @@
         </div>
         <div class="main__save container">
           <div class="main__save-gif">
-            <button class="save-as-gif">Save as GIF</button>
+            <button
+              class="save-as-gif"
+              data-toggle="tooltip"
+              data-placement="right"
+              title="Save as GIF (S)"
+            >
+              Save as GIF
+            </button>
           </div>
           <div class="main__save-apng">
-            <button class="save-as-apng">Save as aPNG</button>
+            <button
+              class="save-as-apng"
+              data-toggle="tooltip"
+              data-placement="right"
+              title="Save as aPNG (G)"
+            >
+              Save as aPNG
+            </button>
           </div>
         </div>
       </div>
     </section>
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>
