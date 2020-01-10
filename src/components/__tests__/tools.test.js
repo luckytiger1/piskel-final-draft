@@ -1,7 +1,8 @@
 import { tools } from "../utils/variables";
-import Tool from "../canvas/tools/tools";
+import Tool from "../tools/tools";
+import "jest-canvas-mock";
 
-jest.mock("../canvas/tools/tools");
+jest.mock("../tools/tools");
 
 describe("Canvas module", () => {
   const tool = new Tool();
@@ -9,7 +10,7 @@ describe("Canvas module", () => {
   // const canvas = document.createElement("canvas");
   // const context = canvas.getContext("2d");
   test("Expected context fillStyle to be #ff0000", () => {
-    tool.setPencilToTrue() = jest.fn();
+    tool.setPencilToTrue();
     expect(tools.pencil).toBeTruthy();
   });
 });

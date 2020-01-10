@@ -67,6 +67,24 @@
           }
         }
 
+        .tile-count {
+          display: block;
+          opacity: 1;
+          border-bottom-right-radius: 3px;
+          top: 0;
+          left: 0;
+          font-size: 14px;
+          line-height: 30px;
+          font-weight: bold;
+          text-align: center;
+          color: white;
+          cursor: default;
+          &.toggled {
+            background-color: gold;
+            color: black;
+          }
+        }
+
         .duplicate-frame {
           bottom: 0;
           right: 0;

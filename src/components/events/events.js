@@ -222,6 +222,8 @@ export default class EventHandler {
         idCount.count -= 1;
       } else if (e.target.classList.contains("duplicate-frame")) {
         this.frame.duplicateFrame(e);
+      } else if (e.target.classList.contains("tile-count")) {
+        e.target.classList.toggle("toggled");
       } else if (e.target.closest(".preview-tile")) {
         const previewTile = document.querySelectorAll(".preview-tile");
         [].forEach.call(previewTile, el => {

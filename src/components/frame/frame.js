@@ -24,7 +24,8 @@ export default class Frame {
     const deleteBtn = this.addDeleteFrameBtn();
     const duplicateBtn = this.addDuplicateFrameBtn();
     const DragNDropBtn = this.addDnDBtn();
-    listItem.append(deleteBtn, duplicateBtn, DragNDropBtn);
+    const tileCountBtn = this.addTileCountBtn();
+    listItem.append(deleteBtn, duplicateBtn, DragNDropBtn, tileCountBtn);
     listContainer.append(listItem);
     listItem.prepend(canvasContainer);
     listItem.setAttribute("data-tile-number", parseInt(id, 10));
@@ -37,6 +38,7 @@ export default class Frame {
     });
     listItem.classList.add("selected");
     this.updateAttribute();
+    this.updateTileCount();
   }
 
   firstFrameOnFirstLoad() {
@@ -123,6 +125,13 @@ export default class Frame {
     return duplicateFrameBtn;
   }
 
+  addTileCountBtn() {
+    const DnDBtn = document.createElement("button");
+    DnDBtn.classList.add("tile-overlay", "tile-count", "toggled");
+
+    return DnDBtn;
+  }
+
   deleteFrame(e) {
     const tile = e.target.parentNode;
     this.changeSelectedTile(e);
@@ -135,6 +144,7 @@ export default class Frame {
     }
     this.changeBtnStyle();
     this.updateAttribute();
+    this.updateTileCount();
   }
 
   duplicateFrame(e) {
@@ -171,6 +181,14 @@ export default class Frame {
   dragFrame(e, item) {
     const selectedTile = item;
     selectedTile.style.left = `${e.pageX - selectedTile.offsetWidth / 2}px`;
+  }
+
+  updateTileCount() {
+    document.querySelectorAll(".preview-tile").forEach(el => {
+      const elem = el;
+      elem.children[4].innerHTML =
+        parseInt(elem.getAttribute("data-tile-number"), 10) + 1;
+    });
   }
 
   updateCurrentCanvas(canvasToCopy) {
