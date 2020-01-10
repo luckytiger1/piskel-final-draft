@@ -1,0 +1,48 @@
+.modal-content--container {
+  .modal-item {
+    &--container {
+      cursor: pointer;
+    }
+    margin: 20px 0;
+
+    &--shortcut {
+      color: gold;
+      border-color: gold;
+    }
+  }
+}
+.shortcut-undefined {
+  .modal-item--shortcut {
+    border-color: red;
+    color: red;
+  }
+}
+
+.shortcut-editing {
+  .modal-item--shortcut {
+    animation: fade 0.5s infinite;
+  }
+}
+
+.modal-item--shortcut {
+  box-sizing: border-box;
+  display: inline-block;
+  height: 30px;
+  line-height: 26px;
+  padding: 0 10px;
+  border: 2px solid white;
+  border-radius: 2px;
+  text-align: center;
+  font-family: monospace;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0.5;
+  }
+  to {
+    opacity: 1;
+  }
+}

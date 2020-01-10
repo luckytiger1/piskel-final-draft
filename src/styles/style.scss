@@ -1,0 +1,56 @@
+@import "normalize.scss";
+@import "../components/landing/header";
+@import "../components/landing/mixins";
+@import "../components/colors/colors";
+
+body {
+  user-select: none;
+  width: 100%;
+  height: 100%;
+}
+
+.main {
+  height: 100vh;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 50px;
+}
+
+@media screen and (max-width: 1200px) {
+  .main {
+    flex-direction: column;
+    align-items: flex-start;
+    &__instruments__container {
+      height: 300px;
+      flex-direction: row;
+      justify-content: space-evenly;
+      &-block1,
+      &-block2 {
+        box-shadow: none;
+      }
+      .pen__size__container {
+        flex-direction: column;
+      }
+    }
+    &__frames {
+      position: relative;
+      .main__frames--scroller {
+        overflow-y: hidden;
+        overflow-x: scroll;
+        width: 100%;
+        ul {
+          display: flex;
+        }
+      }
+    }
+    &__canvas {
+      align-self: center;
+    }
+    &__switcher {
+      margin-top: 70px;
+      margin-bottom: 20px;
+      flex-direction: row;
+      align-self: center;
+    }
+  }
+}

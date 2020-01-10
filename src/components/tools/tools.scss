@@ -1,0 +1,81 @@
+@import "../landing/mixins";
+
+.main {
+  &__instruments__container {
+    display: flex;
+    flex-direction: column;
+    &-block1 {
+      position: relative;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.24),
+        0px 0px 4px rgba(0, 0, 0, 0.12);
+      &__list {
+        width: 228px;
+        height: 246px;
+        display: flex;
+        padding: 0;
+        margin: 0;
+        justify-content: space-evenly;
+        flex-direction: column;
+        align-items: flex-start;
+        padding-left: 50px;
+        list-style: none;
+        input[type="color"] {
+          display: none;
+        }
+        .list-item {
+          text-align: left;
+
+          @include instrument();
+          &:first-child {
+            list-style-image: url(./img/choose-color.svg);
+          }
+          &:nth-child(2) {
+            list-style-image: url(./img/choose-color.svg);
+          }
+          &:nth-child(3) {
+            list-style-image: url(./img/pencil.svg);
+          }
+          &:nth-child(4) {
+            list-style-image: url(./img/eraser.svg);
+          }
+          &:nth-child(5) {
+            list-style-image: url(./img/stroke.svg);
+          }
+          &:last-child {
+            list-style-image: url(./img/same-color-icon.svg);
+          }
+        }
+        .list-item.active {
+          background: rgba(138, 127, 127, 0.508);
+        }
+      }
+    }
+    .bucket-btn,
+    .choose-color-btn,
+    .pencil-btn,
+    .eraser-btn,
+    .stroke-btn,
+    .same-color-fill-btn {
+      cursor: pointer;
+      outline: none;
+      border: none;
+      width: 100%;
+      padding: 5px 5px 10px 5px;
+      text-align: start;
+      background: none;
+      &:hover {
+        background: rgba(138, 127, 127, 0.308);
+      }
+    }
+    &-block3 {
+      margin: 40px 0;
+      @include instrument();
+
+      .pen__size__container {
+        padding-top: 15px;
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+  }
+}

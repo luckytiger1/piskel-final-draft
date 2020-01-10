@@ -1,0 +1,47 @@
+@import "header.scss";
+@import "_mixins.scss";
+
+.main__screenshot {
+  display: flex;
+  &-photo-container {
+    display: block;
+    background: url("./img/piskel-clone-screenshot.png") no-repeat;
+    background-size: contain;
+    height: 400px;
+  }
+}
+
+.main__functionality {
+  display: flex;
+  flex-wrap: wrap;
+  &:last-child {
+    font-size: large;
+  }
+  &-item {
+    display: flex;
+    // flex-wrap: wrap;
+    height: 150px;
+    width: 50%;
+    &--img {
+      display: block;
+      &-preview {
+        background: url("./img/feature-live-preview.gif") no-repeat;
+      }
+      &-google {
+        background: url("./img/feature-google.png") no-repeat;
+      }
+      &-export {
+        background: url("./img/feature-save-as-gif.png") no-repeat;
+      }
+      &-github {
+        background: url("./img/feature-github.gif") no-repeat;
+      }
+
+      width: 100%;
+      height: 150px;
+      order: 2;
+
+      float: right;
+    }
+  }
+}

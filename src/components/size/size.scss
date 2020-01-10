@@ -1,0 +1,22 @@
+.main {
+  &__switcher {
+    display: flex;
+    justify-content: space-between;
+    button {
+      font-size: large;
+      cursor: pointer;
+      margin-top: 15px;
+      width: 100px;
+      padding: 10px 10px;
+      background: transparent;
+      outline: none;
+      border: 1px solid black;
+    }
+    .active {
+      background: red;
+    }
+    button:hover {
+      background: red;
+    }
+  }
+}

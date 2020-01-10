@@ -59,13 +59,13 @@
                 Choose color
               </button>
             </li>
-            <li
-              class="list-item pencil active"
-              data-toggle="tooltip"
-              data-placement="right"
-              title="Pencil (P)"
-            >
-              <button class="pencil-btn">
+            <li class="list-item pencil active">
+              <button
+                class="pencil-btn"
+                data-toggle="tooltip"
+                data-placement="right"
+                title="Pencil (P)"
+              >
                 <span class="pencil-text">
                   Pencil
                 </span>
@@ -227,6 +227,86 @@
             >
               Save as aPNG
             </button>
+          </div>
+          <button
+            type="button"
+            class="btn btn-primary"
+            data-toggle="modal"
+            data-target=".bd-example-modal-lg"
+          >
+            Shortcut modal
+          </button>
+
+          <div
+            class="modal fade bd-example-modal-lg"
+            tabindex="-1"
+            role="dialog"
+            aria-labelledby="myLargeModalLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+              <div class="modal-content">
+                <h3>Keyboard shortcuts</h3>
+
+                <div class="modal-content--container container">
+                  <div class="modal-item row">
+                    <div class="modal-item--container col">
+                      <span class="modal-item--shortcut">P</span>
+                      <span class="modal-item--info">Pen tool</span>
+                    </div>
+                    <div class="modal-item--container col">
+                      <span class="modal-item--shortcut">B</span>
+                      <span class="modal-item--info">Paint bucket</span>
+                    </div>
+                    <div class="modal-item--container col">
+                      <span class="modal-item--shortcut">C</span>
+                      <span class="modal-item--info">Choose color</span>
+                    </div>
+                  </div>
+                  <div class="modal-item row">
+                    <div class="modal-item--container col">
+                      <span class="modal-item--shortcut">E</span>
+                      <span class="modal-item--info">Eraser tool</span>
+                    </div>
+                    <div class="modal-item--container col">
+                      <span class="modal-item--shortcut">L</span>
+                      <span class="modal-item--info">Stroke tool</span>
+                    </div>
+                    <div class="modal-item--container col">
+                      <span class="modal-item--shortcut">W</span>
+                      <span class="modal-item--info"
+                        >Fill same colors tool</span
+                      >
+                    </div>
+                  </div>
+
+                  <div class="modal-item row">
+                    <div class="modal-item--container col">
+                      <span class="modal-item--shortcut">K</span>
+                      <span class="modal-item--info">Add frame</span>
+                    </div>
+                    <div class="modal-item--container col">
+                      <span class="modal-item--shortcut">J</span>
+                      <span class="modal-item--info">Delete frame</span>
+                    </div>
+                    <div class="modal-item--container col">
+                      <span class="modal-item--shortcut">H</span>
+                      <span class="modal-item--info">Duplicate frame</span>
+                    </div>
+                  </div>
+                  <div class="modal-item row">
+                    <div class="modal-item--container col-4">
+                      <span class="modal-item--shortcut">S</span>
+                      <span class="modal-item--info">Save as GIF</span>
+                    </div>
+                    <div class="modal-item--container col-4">
+                      <span class="modal-item--shortcut">G</span>
+                      <span class="modal-item--info">Save as APNG</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

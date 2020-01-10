@@ -4,8 +4,8 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = {
   entry: {
-    main: "./src/app/landing/landing.js",
-    project: "./src/app/index.js"
+    main: "./src/components/landing/landing.js",
+    project: "./src/app.js"
   },
   output: {
     path: path.resolve(__dirname, "../build"),
@@ -36,6 +36,7 @@ module.exports = {
           "style-loader", // creates style nodes from JS strings
           "css-loader", // translates CSS into CommonJS
           "postcss-loader", // Loader for webpack to process CSS with PostCSS
+          "resolve-url-loader",
           {
             loader: "sass-loader",
             options: {

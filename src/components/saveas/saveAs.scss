@@ -1,0 +1,20 @@
+.main {
+  &__preview {
+    .main__save-gif,
+    .main__save-apng {
+      button {
+        font-size: large;
+        cursor: pointer;
+        margin: 10px 0;
+        width: 150px;
+        padding: 10px;
+        background: transparent;
+        outline: none;
+        border: 1px solid #000;
+        &:hover {
+          background: red;
+        }
+      }
+    }
+  }
+}
